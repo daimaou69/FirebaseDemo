@@ -11,6 +11,11 @@ import Firebase
 
 class ViewController: UIViewController {
     
+    
+    @IBOutlet weak var txtMSSV: UITextField!
+    
+    @IBOutlet weak var txtHoTen: UITextField!
+    
     var ref: DatabaseReference!
     
     override func viewDidLoad() {
@@ -23,7 +28,11 @@ class ViewController: UIViewController {
     
     @IBAction func btnRegister(_ sender: UIButton) {
         ref = Database.database().reference()
-    self.ref.child("users").child("18211TT3972").setValue(["username": "Tran Thanh Tung"])
+        
+        if let mssv = txtMSSV.text, let hoten = txtHoTen.text {
+            self.ref.child("test").child(mssv).setValue(["id":mssv, "username": hoten])
+        }
+    
     }
     
 }
